@@ -10,7 +10,7 @@ APawnBase::APawnBase()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsulee Collider"));
+	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
 	RootComponent = CapsuleComp;
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base Mesh"));
@@ -21,7 +21,6 @@ APawnBase::APawnBase()
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile Spawn Point"));
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
-	
 }
 
 

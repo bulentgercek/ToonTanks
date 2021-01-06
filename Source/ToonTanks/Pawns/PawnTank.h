@@ -20,6 +20,12 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = true));
 	UCameraComponent* Camera;
 
+	FVector MoveDirection;
+	FQuat RotationDirection;
+
+	float MoveSpeed = 100.0f;
+	float RotateSpeed = 100.0f;
+
 public:
 	// Sets default values for this pawn's properties
 	APawnTank();
@@ -29,6 +35,13 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+private:
+	void CalculateMoveInput(float Value);
+	void CalculateRotateInput(float Value);
+
+	void Move();
+	void Rotate();
 
 protected:
 	// Called when the game starts or when spawned
