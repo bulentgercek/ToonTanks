@@ -29,6 +29,7 @@ private:
 	float RotateSpeed = 100.0f;
 
 	APlayerController* PlayerController;
+	bool bIsPlayerAlive = true;
 
 public:
 	// Sets default values for this pawn's properties
@@ -41,6 +42,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void HandleDestruction() override;
+
+	bool GetIsPlayerAlive();
 
 private:
 	void CalculateMoveInput(float Value);

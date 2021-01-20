@@ -24,12 +24,22 @@ void APawnTank::BeginPlay()
     PlayerController = Cast<APlayerController>(GetController());
 }
 
+
 void APawnTank::HandleDestruction() 
 {
     // Call base pawn class HandleDestruction to play effects.
     Super::HandleDestruction();
     // Hide Player. TODO - Create new function to handle this.
-    Destroy();
+    bIsPlayerAlive = false;
+
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+}
+
+
+bool APawnTank::GetIsPlayerAlive() 
+{
+    return bIsPlayerAlive;
 }
 
 // Called every frame
@@ -60,10 +70,12 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APawnTank::Fire);
 }
 
+
 void APawnTank::CalculateMoveInput(float Value) 
 {
     MoveDirection = FVector(Value * MoveSpeed * GetWorld()->DeltaTimeSeconds, 0, 0);
 }
+
 
 void APawnTank::CalculateRotateInput(float Value) 
 {
@@ -72,10 +84,12 @@ void APawnTank::CalculateRotateInput(float Value)
     RotationDirection = FQuat(Rotation);
 }
 
+
 void APawnTank::Move() 
 {
     AddActorLocalOffset(MoveDirection, true);
 }
+
 
 void APawnTank::Rotate() 
 {
